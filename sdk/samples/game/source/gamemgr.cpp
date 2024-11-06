@@ -32,15 +32,23 @@ int CGameMgr::StartGame()
 	// controller that should be used.
 
 	// Create some stones
-	for( unsigned int n = 0; n < 10; n++ )
-		SpawnObject("stone", '0', rand()%10, rand()%10);
+	for( unsigned int n = 0; n < 10; n++ ) {
+		int y = rand()%10;
+		int x = rand()%10;
+		SpawnObject("stone", '0', x, y);
+	}
 
 	// Create some zombies
-	for( unsigned int n = 0; n < 3; n++ )
-		SpawnObject("zombie", 'z', rand()%10, rand()%10);
+	for( unsigned int n = 0; n < 3; n++ ) {
+		int y = rand()%10;
+		int x = rand()%10;
+		SpawnObject("zombie", 'z', x, y);
+	}
 
 	// Create the player
-	CGameObj *obj = SpawnObject("player", 'p', rand()%10, rand()%10);
+	int y = rand()%10;
+	int x = rand()%10;
+	CGameObj *obj = SpawnObject("player", 'p', x, y);
 	if( obj )
 		obj->name = "player";
 
@@ -55,6 +63,7 @@ CGameObj *CGameMgr::SpawnObject(const std::string &type, char dispChar, int x, i
 {
 	CGameObj *obj = new CGameObj(dispChar, x, y);
 	gameObjects.push_back(obj);
+	printf("Added %s (unknown) %c at %d,%d\n", type.c_str(), dispChar, x, y);
 
 	// Set the controller based on type
 	obj->controller = scriptMgr->CreateController(type, obj);
@@ -123,7 +132,7 @@ void CGameMgr::Render()
 #ifdef _WIN32
 	system("cls");
 #else
-	system("clear");
+	//system("clear");
 #endif
 
 	// Print some useful information and start the input loop

@@ -2,6 +2,7 @@
 
 CXX = g++
 CXXFLAGS += -ggdb -I../../../../angelscript/include -Wno-missing-field-initializers
+CXXFLAGS+=-g -O0
 SRCDIR = ../../source
 OBJDIR = obj
 

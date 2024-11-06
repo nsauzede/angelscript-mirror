@@ -25,6 +25,14 @@ int main(int argc, char **argv)
 #endif
 
 	int r;
+	srand(0);
+#if 0
+	for (int i = 0; i < 2; i++) {
+	    r = rand()%10;
+	    printf("rand returned %d\n", r);
+	}
+	exit(1);
+#endif
 
 	// Make sure the game is being executed with the correct working directory
 	// At the very least there should be a 'player.as' script for controlling the 
